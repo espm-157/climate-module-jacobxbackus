@@ -1,22 +1,13 @@
-# Climate Module
+# Climate Change in the Industrialized World
 
 <!-- EDIT with your badge link -->
 [![Reproducibility Check](https://github.com/espm-157/climate-python-template/actions/workflows/main.yml/badge.svg)](https://github.com/espm-157/climate-python-template/actions/workflows/main.yml)
 
 ## Team Members
 
-🦸
-🦹
+Jacob Backus and Joesph Wong
 
-## 🎓 Learning Objectives
 
-:octocat: Use of GitHub  
-:snake: Use of Jupyter Notebooks  
-:abcd: Accessing tabular data  
-📈 Data visualization  
-🔍 Verifying code you did not write  
-🗄 Working with data larger than memory  
-🌡️ Become familiar with data on global climate change  
 
 ## 📖 Content Overview
 
