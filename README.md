@@ -1,63 +1,52 @@
-# Climate Change in the Industrialized World
+[![Reproducibility Check](https://github.com/josephwong-png/climate-module-josephwong-png/actions/workflows/main.yml/badge.svg)](https://github.com/josephwong-png/climate-module-josephwong-png/actions/workflows/main.yml)
 
-<!-- EDIT with your badge link -->
-[![Reproducibility Check](https://github.com/espm-157/climate-python-template/actions/workflows/main.yml/badge.svg)](https://github.com/espm-157/climate-python-template/actions/workflows/main.yml)
+# Climate Data Analysis
 
-## Team Members
+Joseph Wong and Jacob Backus. We split the work evenly, used AI for the code, and wrote the explanations ourselves.
 
-Jacob Backus and Joesph Wong
+The notebook explores Mauna Loa CO₂, Arctic sea ice, EXIOBASE industrial output and emissions, and the Vostok ice-core record. It includes three figures, checks of missing values and units, measured memory comparisons, and a UK emissions comparison.
 
+## Run the notebook
 
+Use the course's Linux Jupyter environment with Python 3.11 and an internet connection. The course workflow uses Python 3.11.9. Keep `climate.ipynb`, `requirements.txt`, and `data/` together.
 
-## 📖 Content Overview
+```bash
+python -m pip install -r requirements.txt
+```
 
-[💻 Assignment template](climate.ipynb)  
-[💯 Assignment rubric](rubric.md)  
-[📊 Session 2 benchmarking exercise](benchmark.md)  
+Open `climate.ipynb`, restart the kernel, and run all cells in order. The large `Z` table is read directly from the public EXIOBASE Parquet source, so a fresh checkout does not need a local copy. The other inputs are stored in `data/` as September 8, 2026 snapshots.
 
-Individuals or teams will work through and adapt the questions presented in the climate
-notebook to reproduce key indicators of climate change, similar to NASA's
-<https://climate.nasa.gov/vital-signs>.  Our primary objective is to reproduce the famous
-'hockey-stick' curve first reported in _Nature_ ([Mann et al 1998](https://doi.org/10.1038/33859 "Mann, M., Bradley, R. & Hughes, M. Global-scale temperature patterns and climate forcing over the past six centuries. Nature 392, 779–787 (1998). https://doi.org/10.1038/33859"))
-using the most recent observations and most extensive ice core data.  Along the way we
-will encounter many other datasets and learn about wrangling the diverse conventions in
-tabular data.
+The memory measurement uses Linux's `resource` counter. Run this notebook in the course environment or a Linux environment rather than native Windows Python.
 
-A second thread runs through the module. You have a language model that will write the
-parsing code for you, and it is good at it. It is also wrong in specific, recurring ways
-that produce code which runs cleanly and gives the wrong answer. Each part of the notebook
-pairs a climate data set with one of those failure modes. The notebook does not tell you
-which; finding out is the assignment. The recurring question is the one scientists have
-always had to answer about code they did not write:
+## Files
 
-> How do I know these numbers are right?
+| File | Purpose |
+|---|---|
+| `climate.ipynb` | Analysis, figures, verification blocks, and reflection |
+| `requirements.txt` | Analysis and course-check dependencies |
+| `data/` | Small source snapshots used by the notebook |
+| `.github/workflows/main.yml` | Existing course reproducibility check |
 
-Every previous advance that made computing dramatically easier — screens over punchcards,
-compilers over assembly, Python over C — led to more programming by more people, not less.
-Efficiency gets spent on attempting more. That is why this module does not ask you to
-memorize library syntax, and equally why it cannot be completed by pasting the assignment
-into a model and typing "go". The work moves up a level rather than disappearing.
+Keep the instructor's workflow in place. It checks notebook execution with:
 
-We work in plan mode throughout this module: you review and approve what the model
-proposes before it runs.
+```bash
+pytest --nbval-lax *.ipynb
+```
 
-## Data sources
+Keep only the final assignment notebook at the repository root; put personal backup notebooks outside the repository. A green check confirms execution, while the notebook's source and numerical checks support the scientific results.
 
-- NOAA Mauna Loa CO2 record — <https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_mm_mlo.txt>
-- NSIDC Arctic sea ice extent (G02135) — <https://nsidc.org/data/G02135>
-- EXIOBASE 3, cloud-optimized Parquet — <https://source.coop/youssef-harby/exiobase-3>
-- Our World in Data CO2 — <https://github.com/owid/co2-data>
-- Vostok ice core — <https://doi.org/10.3334/CDIAC/ATG.009>
+## Data and interpretation
 
-## Setup
+| Data | Source |
+|---|---|
+| Mauna Loa TXT and CSV | [NOAA CO₂ trends](https://gml.noaa.gov/ccgg/trends/data.html) |
+| Arctic monthly sea ice, all twelve files | [NSIDC Sea Ice Index v4](https://nsidc.org/data/g02135/versions/4) |
+| EXIOBASE 2022: Z, Y, F, x, F_hh | [EXIOBASE 3.8.1](https://zenodo.org/records/4588235), [Parquet distribution](https://source.coop/youssef-harby/exiobase-3) |
+| National CO₂ | [Our World in Data](https://github.com/owid/co2-data) |
+| Vostok ice-core CO₂ | [Barnola et al., CDIAC record](https://doi.org/10.3334/CDIAC/ATG.009) |
 
-Environment setup, GitHub authentication, and language model configuration are covered on
-the [course website](https://espm-157.carlboettiger.info/) rather than here, since those
-mechanics are shared across all four modules and change faster than the assignments do.
+The full-pandas and local Ibis benchmark results are actual measurements from the original run, retained for comparison. The current Ibis query includes remote access and reports this process's lifetime memory peak.
 
-We use GitHub Actions to run automated reproducibility checks — click the badge up top for
-details.
+The UK comparison documents different emissions boundaries and EXIOBASE's projected 2022 values. Peat decay is excluded from the headline total, and the remaining UK discrepancy and Estonia outlier are reported explicitly. The ice-core comparison also keeps the sampling differences and gap between records visible.
 
-## Links
-
-[🌐 Course Website](https://espm-157.carlboettiger.info/)
+EXIOBASE uses [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/). Retain the source credits and the original data terms. Further interpretation sources are linked in the notebook.
